@@ -12,4 +12,9 @@ class OfferController extends Controller
         $offers = Offer::all();
         return Inertia::render('Offer/OfferList', compact('offers'));
     }
+
+    public function index2(){
+        $offers = Offer::all();
+        return Inertia::render('Offer/OfferList2', compact('offers'));
+    }
 }

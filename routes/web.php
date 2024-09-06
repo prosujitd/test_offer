@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/offer', [OfferController::class,'index'])->name('offer.index');
+Route::get('/offer2', [OfferController::class,'index2'])->name('offer.index');
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [

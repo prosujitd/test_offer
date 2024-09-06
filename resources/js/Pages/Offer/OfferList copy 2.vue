@@ -1,9 +1,4 @@
 <template>
-
-    <Link href="/offer">Offer </Link>
-    <Link href="/offer2">Offer 2</Link>
-    <p>Offer 1</p>
-
     <div>
         <div class="container">
             <div class="row">
@@ -20,7 +15,9 @@
                             <tr v-for="(offer, index) in new_offer">
                                 <td>{{ offer.name }}</td>
                                 <td>{{ offer.expired_at }}</td>
-                                <td ref="myref" class="time-status" data-time="{{ offer.expired_at }}" data-expire="false"><span class="label label-success"> {{ offer.diff }} -- </span>
+                                <td ref="myref" class="time-status" data-time="{{ offer.expired_at }}"
+                                    data-expire="false"><span class="label label-success"> {{ remaining_time[index]
+                                        }} -- </span>
                                 </td>
                             </tr>
 
@@ -35,7 +32,6 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue';
 import moment from 'moment';
-import { Link } from '@inertiajs/vue3';
 
 const props = defineProps({
     offers: Object,
@@ -56,29 +52,18 @@ onMounted( () => {
 // let currentDateTime
 const greet = (()=>{
 
-
-    console.log(new_offer.value)
-
     let currentDateTime = moment().format('YYYY-MM-DD HH:mm:ss')
     new_offer.value.forEach((item,index) => {
         // this.expiredtime = value.
        
-        let deadlineDateTime = moment(item.expired_at, 'YYYY-MM-DD HH:mm:ss');
-        deadlineDateTime.diff(currentDateTime, 'seconds');
-
-        console.log(item);
-        item.diff = deadlineDateTime.diff(currentDateTime, 'seconds');
-        item.is_exp = false;
-        
+        let deadlineDateTime = moment(item.expired_at, 'YYYY-MM-DD HH:mm:ss')
         // console.log('end date >> ',expired_at);
         //   deadlineDateTime = moment(deadlineDateTime, 'YYYY-MM-DD HH:mm')
         // console.log('deadline date time >> ',deadlineDateTime);
         // currentDateTime = moment().format('YYYY-MM-DD HH:mm:ss')
         // console.log('current date time >> ', currentDateTime);
-        // remaining_time.value[index] = deadlineDateTime.diff(currentDateTime, 'seconds');
+        remaining_time.value[index] = deadlineDateTime.diff(currentDateTime, 'seconds');
     })
-
-    console.log(new_offer.value)
 })
 
 // const diff = (expired_at,index) => {

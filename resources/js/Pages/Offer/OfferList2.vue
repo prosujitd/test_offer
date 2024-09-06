@@ -2,8 +2,7 @@
 
     <Link href="/offer">Offer </Link>
     <Link href="/offer2">Offer 2</Link>
-    <p>Offer 1</p>
-
+   <p>Offer 2</p>
     <div>
         <div class="container">
             <div class="row">
